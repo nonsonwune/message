@@ -45,3 +45,4 @@ def whatsAppWebhook(request):
                             sendWhatsAppMessage(phoneNumber, message)
                     except:
                         pass
+            return HttpResponse('success', status=200)
