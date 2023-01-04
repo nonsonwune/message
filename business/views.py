@@ -32,13 +32,13 @@ def whatsAppWebhook(request):
                 try:
                     for entry in data['entry']:
                         phoneNumber = entry['changes'][0]['value']['metadata']['display_phone_number']
-                        phoneId = entry['chamges'][0]['value']['metadata']['phone_number_id']
-                        profileName = entry['chamges'][0]['value']['contacts'][0]['profile']['name']
-                        whatsAppId = entry['chamges'][0]['value']['contacts'][0]['wa_id']
-                        fromId = entry['chamges'][0]['value']['messages'][0]['from']
-                        messageId = entry['chamges'][0]['value']['messages'][0]['id']
-                        timestamp = entry['chamges'][0]['value']['messages'][0]['timestamp']
-                        text = entry['chamges'][0]['value']['messages'][0]['text']['body']
+                        phoneId = entry['changes'][0]['value']['metadata']['phone_number_id']
+                        profileName = entry['changes'][0]['value']['contacts'][0]['profile']['name']
+                        whatsAppId = entry['changes'][0]['value']['contacts'][0]['wa_id']
+                        fromId = entry['changes'][0]['value']['messages'][0]['from']
+                        messageId = entry['changes'][0]['value']['messages'][0]['id']
+                        timestamp = entry['changes'][0]['value']['messages'][0]['timestamp']
+                        text = entry['changes'][0]['value']['messages'][0]['text']['body']
 
                         phoneNumber = '2348136514087'
                         message = 'RE: {} was received'.format(text)
