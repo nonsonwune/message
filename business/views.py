@@ -27,5 +27,21 @@ def whatsAppWebhook(request):
 
         if request.method == 'POST':
             data = json.loads(request.body)
-            
-            return HttpResponse('success', status=200)
+            if 'object' in data and 'entry' in data:
+                if data['object'] == 'whatsapp_business_account':
+                    try:
+                        for entry in data['entry']:
+                            phoneNumber = entry['changes'][0]['value']['metadata']['display_phone_number']
+                            phoneId = entry['chamges'][0]['value']['metadata']['phone_number_id']
+                            profileName = entry['chamges'][0]['value']['contacts'][0]['profile']['name']
+                            whatsAppId = entry['chamges'][0]['value']['contacts'][0][wa_id]
+                            fromId = entry['chamges'][0]['value']['messages'][0]['from']
+                            messageId = entry['chamges'][0]['value']['messages'][0]['id']
+                            timestamp = entry['chamges'][0]['value']['messages'][0]['timestamp']
+                            text = entry['chamges'][0]['value']['messages'][0]['text']['body']
+
+                            phoneNumber = '2348136514087'
+                            message = 'RE: {} was received'.format(text)
+                            sendWhatsAppMessage(phoneNumber, message)
+                    except:
+                        pass
