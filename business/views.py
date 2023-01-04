@@ -35,7 +35,7 @@ def whatsAppWebhook(request):
                         phoneNumber = entry['changes'][0]['value']['metadata']['display_phone_number']
                         phoneId = entry['chamges'][0]['value']['metadata']['phone_number_id']
                         profileName = entry['chamges'][0]['value']['contacts'][0]['profile']['name']
-                        whatsAppId = entry['chamges'][0]['value']['contacts'][0][wa_id]
+                        whatsAppId = entry['chamges'][0]['value']['contacts'][0]['wa_id']
                         fromId = entry['chamges'][0]['value']['messages'][0]['from']
                         messageId = entry['chamges'][0]['value']['messages'][0]['id']
                         timestamp = entry['chamges'][0]['value']['messages'][0]['timestamp']
