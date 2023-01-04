@@ -3,8 +3,8 @@ from . import views
 
 
 urlpatterns = [
-path('', views.home, name='home')
-path('14b5a3b6-fd24-4132-bac3-d2460256710f', views.whatsAppWebhook, name='whatsapp-webhook')
+path('', views.home, name='home'),
+path('14b5a3b6-fd24-4132-bac3-d2460256710f', views.whatsAppWebhook, name='whatsapp-webhook'),
 ]
 
 #nonsonwune.ml/14b5a3b6-fd24-4132-bac3-d2460256710f
