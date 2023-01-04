@@ -14,7 +14,8 @@ def sendWhatsAppMessage(phoneNumber, message):
 
     response = requests.post(settings.WHATSAPP_URL, headers=headers, json=payload)
     ans = response.json()
+    return ans
 
-    phoneNumber = "2348136514087"
-    message = "Hello There, \n This is our first Django WhatsappMessage. \n glad to have you here. \n \n Best Regards. \n Nonso Nwune"
-    sendWhatsAppMessage(phoneNumber, message)
+phoneNumber = "2348136514087"
+message = "Hello There, \n This is our first Django WhatsappMessage. \n glad to have you here. \n \n Best Regards. \n Nonso Nwune"
+ans = sendWhatsAppMessage(phoneNumber, message)
