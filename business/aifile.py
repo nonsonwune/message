@@ -1,7 +1,7 @@
 import os
 import openai
 from django.conf import settings
-openai.api_key = settings.OPENAI_API_KEY
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def companyDescription(business_name, business_type, country, prod_serv, short_description, years, progress):
     response = openai.Completion.create(
