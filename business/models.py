@@ -87,8 +87,5 @@ class ChatSession(models.Model):
             self.last_updated = timezone.localtime(timezone.now())
             super(ChatSession, self).save(*args, **kwargs)
 
-a=1
-
-
 # class FinancialModel(models.Model):
 #     business_plan = models.OneToOneField(BusinessPlan, null=True, blank=True, on_delete=models.CASCADE)
