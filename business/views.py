@@ -37,8 +37,7 @@ def whatsAppWebhook(request):
                     fromId = entry['changes'][0]['value']['messages'][0]['from']
                     text = entry['changes'][0]['value']['messages'][0]['text']['body']
 
-                    message = 'RE: "{}" was received'.format(text)
-                    sendWhatsAppMessage(fromId, message)
+                    handleWhatsAppChat(fromId, text)
             else:
                 pass
         else:

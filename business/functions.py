@@ -1,5 +1,6 @@
 from django.conf import settings
 import requests
+from .models import *
 
 
 def sendWhatsAppMessage(phoneNumber, message):
@@ -17,3 +18,9 @@ def sendWhatsAppMessage(phoneNumber, message):
     return ans
 
     
+def handleWhatsAppChat(fromId, text):
+    #check if existing chat session
+    try:
+        chat = chatSession.objects.get(profile__phoneNumber=fromID)
+    except:
+        

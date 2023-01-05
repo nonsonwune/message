@@ -63,7 +63,7 @@ def chatSession(models.Model):
     OPTIONS = [
         ('1', 'Private Limited Company (LTD)'),
         ('2', 'Public Limited Company (PLC)'),
-        ('3', 'Non-Profit NGO'),
+        ('3', 'Non-Profit, NGO'),
         ('4', 'Partnership')
     ]
     
@@ -75,6 +75,7 @@ def chatSession(models.Model):
     years = models.IntegerField(null=True, blank=True)
     progress = models.TextField(null=True, blank=True)
 
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     #util
     uniqueId = models.CharField(null=True, blank=True, unique=True, max_length=100)
     date_created = models.DateTimeField(blank=True, null=True)
@@ -87,7 +88,7 @@ def chatSession(models.Model):
             self.uniqueId = str(uuid4()).split('-')[4]
 
             self.last_updated = timezone.localtime(timezone.now())
-            super(Profile, self).save(*args, **kwargs)
+            super(chatSession, self).save(*args, **kwargs)
 
 
 # class FinancialModel(models.Model):
