@@ -58,7 +58,7 @@ class BusinessPlan(models.Model):
             super(Profile, self).save(*args, **kwargs)
 
 
-def chatSession(models.Model):
+class chatSession(models.Model):
     
     OPTIONS = [
         ('1', 'Private Limited Company (LTD)'),

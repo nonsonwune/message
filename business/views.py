@@ -37,7 +37,7 @@ def whatsAppWebhook(request):
                     fromId = entry['changes'][0]['value']['messages'][0]['from']
                     text = entry['changes'][0]['value']['messages'][0]['text']['body']
 
-                    handleWhatsAppChat(fromId, text)
+                    handleWhatsAppChat(fromId, profileName, phoneId, text)
             else:
                 pass
         else:

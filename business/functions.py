@@ -2,6 +2,8 @@ from django.conf import settings
 import requests
 from .models import *
 
+from django.contrib.auth.models import User
+
 
 def sendWhatsAppMessage(phoneNumber, message):
     headers = {"Authorization": settings.WHATSAPP_TOKEN}
@@ -18,9 +20,23 @@ def sendWhatsAppMessage(phoneNumber, message):
     return ans
 
     
-def handleWhatsAppChat(fromId, text):
+def handleWhatsAppChat(fromId, profileName, phoneId, text):
     #check if existing chat session
     try:
-        chat = chatSession.objects.get(profile__phoneNumber=fromID)
+        chat = chatSession.objects.get(profile__phoneNumber=fromId)
     except:
-        
+        #Create user
+        user = User.objects.create_user(
+            username=profileName,
+            email='tester@test.com',
+            password='password',
+            first_name=profileName,)
+
+        #create profile
+        profiles = Profile.objects.create(
+            user_profile = user,
+            phoneNumber = fromId,
+            phoneId = phoneId)
+
+        #create chatSssion
+        chat = chatSession.objects.create()
