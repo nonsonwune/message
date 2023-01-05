@@ -27,22 +27,21 @@ def whatsAppWebhook(request):
 
     if request.method == 'POST':
         data = json.loads(request.body)
+
         if 'object' in data and 'entry' in data:
             if data['object'] == 'whatsapp_business_account':
-                try:
-                    for entry in data['entry']:
-                        phoneNumber = entry['changes'][0]['value']['metadata']['display_phone_number']
-                        phoneId = entry['changes'][0]['value']['metadata']['phone_number_id']
-                        profileName = entry['changes'][0]['value']['contacts'][0]['profile']['name']
-                        whatsAppId = entry['changes'][0]['value']['contacts'][0]['wa_id']
-                        fromId = entry['changes'][0]['value']['messages'][0]['from']
-                        messageId = entry['changes'][0]['value']['messages'][0]['id']
-                        timestamp = entry['changes'][0]['value']['messages'][0]['timestamp']
-                        text = entry['changes'][0]['value']['messages'][0]['text']['body']
+                for entry in data['entry']:
+                    phoneId = entry['changes'][0]['value']['metadata']['phone_number_id']
+                    profileName = entry['changes'][0]['value']['contacts'][0]['profile']['name']
+                    whatsAppId = entry['changes'][0]['value']['contacts'][0]['wa_id']
+                    fromId = entry['changes'][0]['value']['messages'][0]['from']
+                    text = entry['changes'][0]['value']['messages'][0]['text']['body']
 
-                        phoneNumber = '2348136514087'
-                        message = 'RE: "{}" was received'.format(text)
-                        sendWhatsAppMessage(phoneNumber, message)
-                except:
-                    pass
+                    message = 'RE: "{}" was received'.format(text)
+                    sendWhatsAppMessage(fromId, message)
+            else:
+                pass
+        else:
+            pass
+        
         return HttpResponse('success', status=200)
