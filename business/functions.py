@@ -52,27 +52,77 @@ def handleWhatsAppChat(fromId, profileName, phoneId, text):
 
 
 #Consinue with function
-    if chat.business_name:
-        #Test for the number
-        try:
-            type = int(text.replace(' ', ''))
-            if type == 1:
-                chat.business_type = 'Private Limited Company (LTD)'
-                chat.save()
-            elif type == 2:
-                chat.business_type = 'Public Limited Company (PLC)'
-                chat.save()
-            elif type == 3:
-                chat.business_type = 'Non-Profit, NGO'
-                chat.save()
-            elif type == 4:
-                chat.business_type = 'Partnership'
-                chat.save()
+    if chat.business_name: 
+        if chat.business_type:
+            if chat.country:
+                if chat.prod_serv:
+                    if chat.short_description:
+                        if chat.years:
+                            if chat.progress:
+                                #anything
+                                message = '😀😀😀'
+                            else:
+                                chat.progress = text
+                                chat.save()
+
+                                message = 'Great! now we have everything we need to build you a businessplan'
+                                sendWhatsAppMessage(fromId, message)
+                        else:
+                            try:
+                                years = int(text.replace(' ', ''))
+                                chat.years = years
+                                chat.save()
+
+                                message = 'How much traction or progress have you made in your business'
+                                sendWhatsAppMessage(fromId, message)
+                            except:
+                                message = 'Please Try Again, Enter only a number, like 1 or 2'
+                                sendWhatsAppMessage(fromId, message)
+                    else:
+                        chat.short_description = text
+                        chat.save()
+                        #send message
+                        message = "How many years have you perated your business?\nENter a number like 1 or 5"
+                        sendWhatsAppMessage(fromId, message)
+                else:
+                    chat.prod_serv = text
+                    chat.save()
+                    #send message
+                    message = "Describe your business idea in 1 or 2 sentences"
+                    sendWhatsAppMessage(fromId, message)
             else:
-                message = "Great, Please select the type of business; enter the number corresponding to the business type: \n 1. Private Limited Company (LTD) \n 2. Public Limited Company (PLC) \n 3. Non-Profit, NGO \n 4. Partnership \n\n enter just the number"
+                chat.country = text
+                chat.save()
+                #send msg
+                message = "What product or service will your Business be providing?"
                 sendWhatsAppMessage(fromId, message)
-        except:
-            message = 'PLease try again! \nselect the type of business; enter the number corresponding to the business type: \n 1. Private Limited Company (LTD) \n 2. Public Limited Company (PLC) \n 3. Non-Profit, NGO \n 4. Partnership \n\n enter just the number'
+
+        else:
+            #Test for the number
+            try:
+                type = int(text.replace(' ', ''))
+                if type == 1:
+                    chat.business_type = 'Private Limited Company (LTD)'
+                    chat.save()
+
+                    message = "WHat country are you from?"
+                    sendWhatsAppMessage(fromId, message)
+
+                elif type == 2:
+                    chat.business_type = 'Public Limited Company (PLC)'
+                    chat.save()
+                elif type == 3:
+                    chat.business_type = 'Non-Profit, NGO'
+                    chat.save()
+                elif type == 4:
+                    chat.business_type = 'Partnership'
+                    chat.save()
+                else:
+                    message = "Great, Please select the type of business; enter the number corresponding to the business type: \n 1. Private Limited Company (LTD) \n 2. Public Limited Company (PLC) \n 3. Non-Profit, NGO \n 4. Partnership \n\n enter just the number"
+                    sendWhatsAppMessage(fromId, message)
+            except:
+                message = 'PLease try again! \nselect the type of business; enter the number corresponding to the business type: \n 1. Private Limited Company (LTD) \n 2. Public Limited Company (PLC) \n 3. Non-Profit, NGO \n 4. Partnership \n\n enter just the number'
+                sendWhatsAppMessage(fromId, message)
     else:
         chat.business_name = text
         chat.save()
@@ -80,14 +130,3 @@ def handleWhatsAppChat(fromId, profileName, phoneId, text):
         #send the next message
         message = "Great, Please select the type of business; enter the number corresponding to the business type: \n 1. Private Limited Company (LTD) \n 2. Public Limited Company (PLC) \n 3. Non-Profit, NGO \n 4. Partnership \n\n enter just the number"
         sendWhatsAppMessage(fromId, message)
-
-
-
-    OPTIONS=1    
-    business_name = models.TextField(null=True, blank=True)
-    business_type = models.CharField(choices=OPTIONS, null=True, blank=True, max_length=200)
-    country = models.TextField(null=True, blank=True)
-    prod_serv = models.TextField(null=True, blank=True)
-    short_description = models.TextField(null=True, blank=True)
-    years = models.IntegerField(null=True, blank=True)
-    progress = models.TextField(null=True, blank=True)
