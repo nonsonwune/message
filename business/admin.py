@@ -4,4 +4,4 @@ from .models import *
 # Register your models here.
 admin.site.register(Profile)
 admin.site.register(BusinessPlan)
-admin.site.register(chatSession)
+admin.site.register(ChatSession)

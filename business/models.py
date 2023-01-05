@@ -58,7 +58,7 @@ class BusinessPlan(models.Model):
             super(Profile, self).save(*args, **kwargs)
 
 
-class chatSession(models.Model):
+class ChatSession(models.Model):
     
     OPTIONS = [
         ('1', 'Private Limited Company (LTD)'),
@@ -88,7 +88,7 @@ class chatSession(models.Model):
             self.uniqueId = str(uuid4()).split('-')[4]
 
             self.last_updated = timezone.localtime(timezone.now())
-            super(chatSession, self).save(*args, **kwargs)
+            super(ChatSession, self).save(*args, **kwargs)
 
 
 # class FinancialModel(models.Model):

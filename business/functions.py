@@ -1,6 +1,6 @@
 from django.conf import settings
 import requests
-from models import *
+from .models import *
 
 from django.contrib.auth.models import User
 
@@ -25,16 +25,22 @@ def handleWhatsAppChat(fromId, profileName, phoneId, text):
     try:
         chat = ChatSession.objects.get(profile__phoneNumber=fromId)
     except:
+        #check user doesnt exist
+        if User.objects.filter(username=phoneId).exists():
+            user = User.objects.get(username=phoneId)
+            user_profile = user.profile
+        
+        else:
         #Create user
-        user = User.objects.create_user(
-            username=profileName,
+            user = User.objects.create_user(
+            username=phoneId,
             email='tester@test.com',
             password='password',
             first_name=profileName,)
 
-        #create profile
-        profiles = Profile.objects.create(
-            user_profile = user,
+            #create profile
+            user_profile = Profile.objects.create(
+            user = user,
             phoneNumber = fromId,
             phoneId = phoneId)
 
