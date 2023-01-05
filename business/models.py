@@ -61,10 +61,10 @@ class BusinessPlan(models.Model):
 class ChatSession(models.Model):
     
     OPTIONS = [
-        ('1', 'Private Limited Company (LTD)'),
-        ('2', 'Public Limited Company (PLC)'),
-        ('3', 'Non-Profit, NGO'),
-        ('4', 'Partnership')
+        ('Private Limited Company (LTD)', 'Private Limited Company (LTD)'),
+        ('Public Limited Company (PLC)', 'Public Limited Company (PLC)'),
+        ('Non-Profit, NGO', 'Non-Profit, NGO'),
+        ('Partnership', 'Partnership')
     ]
     
     business_name = models.TextField(null=True, blank=True)
