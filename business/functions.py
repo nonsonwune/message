@@ -60,7 +60,7 @@ def handleWhatsAppChat(fromId, profileName, phoneId, text):
                         if chat.years:
                             if chat.progress:
                                 #anything
-                                message = '😀😀😀'
+                                message = 'we will message you when business plan is ready😀😀😀'
                             else:
                                 chat.progress = text
                                 chat.save()
