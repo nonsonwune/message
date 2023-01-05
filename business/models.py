@@ -40,8 +40,6 @@ class BusinessPlan(models.Model):
     swot_analysis = models.TextField(null=True, blank=True)
     prodserv_detail = models.TextField(null=True, blank=True)
     market_strategy = models.TextField(null=True, blank=True)
-    
-    profile = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE)
 
     #Utility Variable
     uniqueId = models.CharField(null=True, blank=True, unique=True, max_length=100)
@@ -59,7 +57,6 @@ class BusinessPlan(models.Model):
 
 
 class ChatSession(models.Model):
-    
     OPTIONS = [
         ('Private Limited Company (LTD)', 'Private Limited Company (LTD)'),
         ('Public Limited Company (PLC)', 'Public Limited Company (PLC)'),
