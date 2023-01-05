@@ -1,6 +1,6 @@
 from django.conf import settings
 import requests
-from .models import *
+from models import *
 
 from django.contrib.auth.models import User
 
@@ -23,7 +23,7 @@ def sendWhatsAppMessage(phoneNumber, message):
 def handleWhatsAppChat(fromId, profileName, phoneId, text):
     #check if existing chat session
     try:
-        chat = chatSession.objects.get(profile__phoneNumber=fromId)
+        chat = ChatSession.objects.get(profile__phoneNumber=fromId)
     except:
         #Create user
         user = User.objects.create_user(
@@ -39,4 +39,4 @@ def handleWhatsAppChat(fromId, profileName, phoneId, text):
             phoneId = phoneId)
 
         #create chatSssion
-        chat = chatSession.objects.create()
+        chat = ChatSession.objects.create(profile = user_profile)
