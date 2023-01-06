@@ -50,7 +50,6 @@ def handleWhatsAppChat(fromId, profileName, phoneId, text):
         message = "Welcome to nonso.ai businessplan generator 😃😎 \nI'm going to take you through the process of creating your businessplan right here on whatsapp.\nTo get started, enter your Business Name"
         sendWhatsAppMessage(fromId, message)
 
-
 #Consinue with function
     if chat.business_name: 
         if chat.business_type:
