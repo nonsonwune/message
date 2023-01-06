@@ -29,7 +29,6 @@ def handleWhatsAppChat(fromId, profileName, phoneId, text):
         if User.objects.filter(username=phoneId).exists():
             user = User.objects.get(username=phoneId)
             user_profile = user.profile
-        
         else:
         #Create user
             user = User.objects.create_user(
@@ -50,7 +49,7 @@ def handleWhatsAppChat(fromId, profileName, phoneId, text):
         message = "Welcome to nonso.ai businessplan generator 😃😎 \nI'm going to take you through the process of creating your businessplan right here on whatsapp.\nTo get started, enter your Business Name"
         sendWhatsAppMessage(fromId, message)
 
-#Consinue with function
+#   Consinue with function
     if chat.business_name: 
         if chat.business_type:
             if chat.country:
