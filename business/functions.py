@@ -95,7 +95,6 @@ def handleWhatsAppChat(fromId, profileName, phoneId, text):
                 #send msg
                 message = "What product or service will your Business be providing?"
                 sendWhatsAppMessage(fromId, message)
-
         else:
             #Test for the number
             try:
@@ -106,7 +105,6 @@ def handleWhatsAppChat(fromId, profileName, phoneId, text):
 
                     message = "WHat country are you from?"
                     sendWhatsAppMessage(fromId, message)
-
                 elif type == 2:
                     chat.business_type = 'Public Limited Company (PLC)'
                     chat.save()
