@@ -37,10 +37,18 @@ def whatsAppWebhook(request):
                     fromId = entry['changes'][0]['value']['messages'][0]['from']
                     text = entry['changes'][0]['value']['messages'][0]['text']['body']
 
+<<<<<<< HEAD
                     handleWhatsAppChat(fromId, profileName, phoneId, text)
             else:
                 pass
         else:
             pass
         
+=======
+                        phoneNumber = '2348136514087'
+                        message = 'RE: {} was received'.format(text)
+                        sendWhatsAppMessage(phoneNumber, message)
+                except:
+                    pass
+>>>>>>> parent of bcce1d7 (Update views.py)
         return HttpResponse('success', status=200)
