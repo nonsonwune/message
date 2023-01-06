@@ -18,7 +18,7 @@ class Profile(models.Model):
 
     
     #Utility Variable
-    uniqueId = models.CharField(null=True, blank=True, unique=True, max_length=100)
+    uniqueId = models.CharField(null=False, blank=True, unique=True, max_length=100)
     date_created = models.DateTimeField(blank=True, null=True)
     last_updated = models.DateTimeField(blank=True, null=True)
 
